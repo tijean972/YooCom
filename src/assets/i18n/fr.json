@@ -1,0 +1,27 @@
+
+
+{
+    "MesEvenementPage": "Mes Evènements",
+    "DetailEvenementPage" : "Détails de l'événement",
+    "LoginPage": "Login",
+    "HomePage" : "Acceuil",
+    "ChatRoom" : "Chatroom",
+    "StatPage" : "Statistiques",
+    "AddEventPage" : "Ajouter un événement",
+    "ForgotPasswordPage" : "Mot de passe oublié",
+    "EventListGuest" : "Liste des invités",
+    "EventListObject" : "Ma Todo list",
+    
+
+
+
+
+
+
+
+
+
+    "APPLE": "guada pomme",
+    "BALL": "guadaboule",
+     "CAT": "chatte_guada" 
+}
