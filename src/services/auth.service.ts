@@ -50,12 +50,8 @@ export class firebaseService {
 			});
 			
 			return user;
-		};
+	};
 		
-		
-	}
 
-
-	
  
 }
