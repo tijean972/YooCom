@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Service
-import { AuthService } from '../../services/auth.service';
+import { firebaseService } from '../../services/auth.service';
 
 // Pages
 import { HomePage } from '../home/home';
@@ -25,7 +25,7 @@ export class SignupPage {
   signupError: string;
   form: FormGroup;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private auth: AuthService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, fb: FormBuilder, private auth: firebaseService) {
   
     // Réception des informations concernant le numéro de tel 
     this.info_tel = this.navParams.get('info');

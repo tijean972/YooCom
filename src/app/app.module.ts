@@ -37,7 +37,7 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 
 // Service
 import { userProflService } from '../services/UserProfilService';
-import { AuthService } from '../services/auth.service';
+import { firebaseService } from '../services/auth.service';
 
 // Module traduction
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -155,7 +155,7 @@ export class MyErrorHandler implements ErrorHandler {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     userProflService,
     AngularFireAuth,
-    AuthService,
+    firebaseService,
     Camera,
     MediaCapture,
     NativeStorage

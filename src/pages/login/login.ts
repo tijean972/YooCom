@@ -10,7 +10,7 @@ import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { MesAnnoncesPage } from '../mes-annonces/mes-annonces';
 
 // Service
-import { AuthService } from '../../services/auth.service';
+import { firebaseService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 /**

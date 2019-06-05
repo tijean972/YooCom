@@ -11,6 +11,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { MesAnnoncesPage } from '../pages/mes-annonces/mes-annonces';
 import { AddAnnoncesPage } from '../pages/add-annonces/add-annonces';
 import { IntroPage } from '../pages/intro/intro';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 
 // Service
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -32,6 +33,7 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage },
       { title: 'Login page', component: LoginPage },
+      { title: 'Mot de passe oublié', component: ForgotPasswordPage },
       { title: 'Sign Up', component: SignupPage },
       { title: 'Add Annonce', component: AddAnnoncesPage },
       //{ title: 'List', component: ListPage },

@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // Service
-import { AuthService } from '../../services/auth.service';
+import { firebaseService } from '../../services/auth.service';
 import { LoginPage } from '../login/login';
 
 /**
@@ -22,7 +22,7 @@ export class ForgotPasswordPage {
   loginForm: FormGroup;
   loginError: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: AuthService, fb: FormBuilder) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: firebaseService, fb: FormBuilder) {
     this.loginForm = fb.group({
 			email: ['', Validators.compose([Validators.required, Validators.email])]
     });

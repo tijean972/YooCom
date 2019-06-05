@@ -8,7 +8,7 @@ import { SignupPage } from '../signup/signup';
 import { MesAnnoncesPage } from '../mes-annonces/mes-annonces';
 
 // Service
-import { AuthService } from '../../services/auth.service';
+import { firebaseService } from '../../services/auth.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 // Traduction
@@ -30,9 +30,9 @@ export class HomePage {
                 private afAuth: AngularFireAuth,
                 public platform: Platform,
                 private nativeStorage: NativeStorage) {
-    this.lang = 'mada';
+    this.lang = 'fr';
     this.translate.setDefaultLang('mada');
-    this.translate.use('mada');
+    this.translate.use('fr');
   }
 
   switchLanguage() {
