@@ -31,7 +31,7 @@ export class HomePage {
                 public platform: Platform,
                 private nativeStorage: NativeStorage) {
     this.lang = 'fr';
-    this.translate.setDefaultLang('mada');
+    this.translate.setDefaultLang('fr');
     this.translate.use('fr');
   }
 
