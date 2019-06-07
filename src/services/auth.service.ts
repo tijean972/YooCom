@@ -25,33 +25,23 @@ export class firebaseService {
 		return this.afAuth.auth.sendPasswordResetEmail(email);
 		  
 	}
+	
 
 // USER
 	getCurrentUserUid(){
 		return this.afAuth.auth.currentUser.uid;
 	}
 
-	getCurrentUserInfo(){
-		let listUser: any;
-		let user:any;
+	getCurrentUserDisplayName(){
+		return this.afAuth.auth.currentUser.displayName;
+	}
 
-		this.afs.list('/Users/' + this.getCurrentUserUid(), ref => ref.orderByKey().equalTo(this.getCurrentUserUid()))
-		.snapshotChanges(['child_added'])
-		.subscribe (utilisateur => {
+	getCurrentUserEmail(){
+		return this.afAuth.auth.currentUser.email;
+	}
 
-			  let userbase: any =
-			  {
-				  NomPrenom : null,
-				  phoneNumber: null,
-				  email: null,
-				  photoURL: null
-			  }
-			  user = userbase;
-			});
-			
-			return user;
-	};
-		
-
+	getCurrentUserPhotoURL(){
+		return this.afAuth.auth.currentUser.photoURL;
+	}
  
 }

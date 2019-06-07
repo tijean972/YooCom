@@ -22,6 +22,7 @@ import { LoginPage } from '../login/login';
 // Base de données
 import { AngularFireDatabase, AngularFireList, snapshotChanges } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { firebaseService } from '../../services/auth.service';
 import { Subject, asapScheduler, pipe, of, from, interval, merge, fromEvent, SubscriptionLike, PartialObserver } from 'rxjs';
 import { EmptyObservable } from 'rxjs/observable/EmptyObservable';
 //import { Observable } from 'rxjs/Observable';
@@ -37,6 +38,7 @@ export class MesAnnoncesPage {
 
   //private Annonces: AngularFireList<any>;
   public user: any;
+  public userInfo:any;
   public Annonces: Event[] = [];
   public listAnnonce: any;
 
@@ -46,27 +48,18 @@ export class MesAnnoncesPage {
     //duration: 3000
   });
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams, 
               private afDatabase: AngularFireDatabase, 
               public loadingCtrl: LoadingController,
               public platform: Platform,
               private afAuth: AngularFireAuth,
+              public firebaseService:firebaseService,
               private nativeStorage: NativeStorage) {
                 
               //this.user = /*this.navParams.get('user') ||*/ this.afAuth.auth.currentUser;
-              //this.isConnected();
-
-
-
-        
-
-        
-          
+              //this.isConnected(); 
 
   }
-
-
 
   removeAnnonce($key: string) {
     this.listAnnonce.remove($key);
@@ -74,19 +67,23 @@ export class MesAnnoncesPage {
 
   ngOnInit(){
     this.showLoader();
-
-    this.user = /*this.navParams.get('user') ||*/ this.afAuth.auth.currentUser;
-
-    // Création 
-    this.listAnnonce = this.afDatabase.list('/Annonce', ref => ref.orderByChild('idEmmetteur').equalTo(this.user.uid));
+    // Mise à jour de la langue firebase en cas de changement de mot de passe, l'email envoyé sera dans la langue du tel
+    this.afAuth.auth.useDeviceLanguage();
     
+    // Récupération du USER
+    this.user = /*this.navParams.get('user') ||*/ this.afAuth.auth.currentUser;
+    this.afAuth.auth.currentUser.updateProfile({
+      photoURL: "https://example.com/jane-q-user/profile.jpg"
+    }).then(function(){
+      console.log("La photo as changée!")
+    });
+        
 
-    // Récupération des annonces depuis la base de données.
+    // Récupération de la liste des annonces
+    this.listAnnonce = this.afDatabase.list('/Annonce', ref => ref.orderByChild('idEmmetteur').equalTo(this.user.uid));
     this.listAnnonce.snapshotChanges(['child_added'])
     .subscribe(actions => {
       actions.forEach(action => {
-
-        
         let an: Event = {
           idAnnonce: action.key,
           title: action.payload.val().title,

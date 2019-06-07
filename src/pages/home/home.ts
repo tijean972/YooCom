@@ -22,12 +22,13 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  userInfo:any ={};
+  userInfo:any={};
   lang:any;
 
   constructor(  public navCtrl: NavController, 
                 public translate: TranslateService, 
                 private afAuth: AngularFireAuth,
+                private firebaseService: firebaseService,
                 public platform: Platform,
                 private nativeStorage: NativeStorage) {
     this.lang = 'fr';
