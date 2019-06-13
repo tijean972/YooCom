@@ -16,18 +16,61 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 // Service
 import { AngularFireAuth } from 'angularfire2/auth';
 
+// Base de données
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage; //null; //MesAnnoncesPage;
-
+  rootPage: any = null; //null; //MesAnnoncesPage;
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth) {
+  public userScope2:any;
+  public addUserScope2:any;
+
+  //public user: any;
+
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth, public afs: AngularFireDatabase) {
     this.initializeApp();
+
+    
+      this.afAuth.authState.subscribe(user => {
+        if(user){
+          this.rootPage = MesAnnoncesPage;
+          // Récupération du scoop2 user
+          /*this.afs.list('/userScope', ref => ref.orderByChild('idEmmetteur').equalTo(user.uid))
+          .snapshotChanges(['child_added'])
+          .subscribe(actions => {
+            console.log("On y est !!");
+            actions.forEach(action => {
+              let an = {
+                uid: action.key,
+                Introduction: action.payload.val(),
+              };
+
+              if(an !== null){
+                this.rootPage = MesAnnoncesPage;
+              }else{
+                this.nav.setRoot(IntroPage);
+                //this.nav.setRoot(MesAnnoncesPage, {user:user});
+              }
+            });
+            //this.hideLoader();
+          });*/
+
+        } else{
+          this.nav.setRoot(IntroPage);
+        }
+     });
+
+
+
+
+
+
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -49,17 +92,9 @@ export class MyApp {
           this.statusBar.backgroundColorByHexString('#3498db');
         //this.statusBar.styleDefault();
          this.splashScreen.hide();
-         
      }
 
-      this.afAuth.authState.subscribe(user => {
-        if(user){
-          this.rootPage = MesAnnoncesPage;
-          //this.nav.setRoot(MesAnnoncesPage, {user:user});
-        } else{
-          this.nav.setRoot(HomePage);
-        }
-     });
+     
 
       
       

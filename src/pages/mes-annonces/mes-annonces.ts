@@ -37,7 +37,7 @@ import 'rxjs/add/operator/map';
 export class MesAnnoncesPage {
 
   //private Annonces: AngularFireList<any>;
-  public user: any;
+  public user: any={};
   public userInfo:any;
   public Annonces: Event[] = [];
   public listAnnonce: any;

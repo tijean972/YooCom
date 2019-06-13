@@ -36,8 +36,10 @@ import { AngularFireStorageModule } from 'angularfire2/storage';
 
 
 // Service
-import { userProflService } from '../services/UserProfilService';
+import { userProflService } from '../services/UserProfilServiceDAO';
 import { firebaseService } from '../services/auth.service';
+
+
 
 // Module traduction
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -122,6 +124,7 @@ export class MyErrorHandler implements ErrorHandler {
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
+    //NgCalendarModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     TranslateModule.forRoot({

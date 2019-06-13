@@ -19,6 +19,9 @@ import { userProfil } from '../../model/userProfilModel';
 // import pages
 import { MesAnnoncesPage } from '../mes-annonces/mes-annonces';
 
+// import date picker
+import { DatePicker } from '@ionic-native/date-picker';
+
 // Base de données
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireStorage, AngularFireUploadTask } from 'angularfire2/storage';
@@ -56,6 +59,7 @@ export class AddAnnoncesPage {
                 private storage: AngularFireStorage,
                 private camera: Camera, 
                 public loadingCtrl: LoadingController,
+                private datePicker: DatePicker,
                 private mediaCapture: MediaCapture) {
 
     this.user = this.navParams.get('user');
@@ -69,6 +73,17 @@ export class AddAnnoncesPage {
     });
 
     // récupération des photos
+  }
+
+  pickDate(){
+    this.datePicker.show({
+      date: new Date(),
+      mode: 'date',
+      androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
+    }).then(
+      date => console.log('Got date: ', date),
+      err => console.log('Error occurred while getting date: ', err)
+    );
   }
 
   btnSubmit(){

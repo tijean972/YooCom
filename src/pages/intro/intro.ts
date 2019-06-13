@@ -1,6 +1,12 @@
 import { Component, ViewChild,  trigger, transition, style, state, animate, keyframes } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 
+// Service
+import { firebaseService } from '../../services/auth.service';
+
+// Base de données
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { LoginPage } from '../login/login';
 
 
 /**
@@ -40,16 +46,22 @@ export class IntroPage {
   skipMsg: string = "Suivant";
   state: string = 'x';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private auth: firebaseService, public afs: AngularFireDatabase) {
   }
+
+ 
+  
 
   skip() {
     //this.navCtrl.push(MainPage);
+    this.navCtrl.setRoot(LoginPage);
+    
   }
 
   slideChanged() {
     if (this.slides.isEnd())
       this.skipMsg = "On nou roulé";
+      
   }
 
   slideMoved() {
@@ -65,6 +77,7 @@ export class IntroPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');
+      
   }
 
 }

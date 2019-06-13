@@ -3,10 +3,20 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 //import AuthProvider = firebase.auth.AuthProvider;
 
+
+
+
 @Injectable()
-export class firebaseService {
+export class eventServiceDAO {
+    
+    public user: any;
+    public event: any;
+    listEvent: any;
+
+
 
 	constructor(public afAuth: AngularFireAuth, public afs: AngularFireDatabase, ) {
+        this.user= this.afAuth.auth.currentUser.uid;
 	}
 
 	
